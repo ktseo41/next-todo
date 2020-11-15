@@ -1,0 +1,80 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+
+.todo-card {
+  display: inline-flex;
+  position: relative;
+  padding: 5px;
+  color: white;
+  border-radius: 4px;
+  margin: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.todo-card.done {
+  text-decoration: line-through;
+}
+
+
+span.check-todo {
+  padding: 2px;
+  border: 1px solid rgb(234, 234, 234);
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+section.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@for $i from 1 through 10 {
+  .todo-card.priority-#{$i} {
+    min-width: #{$i * 10 + 80}px;
+    width: #{$i * 3}vw;
+    min-height: 21px;
+    height: #{$i * 3}vw;
+  }
+}
+
+@for $i from 1 through 10 {
+  .todo-card.weight-#{$i} {
+    opacity: #{0.3 + $i * 0.05};
+  }
+}
+
+.todo-card-background.color-black {
+  background-color: black;
+}
+
+.todo-card-background.color-grey {
+  background-color: grey;
+}
+
+.todo-card-background.color-red {
+  background-color: #5c2b29;
+}
+
+.todo-card-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  border-radius: 4px;
+  z-index: -1;
+  background-color: grey;
+  border: 1.7px solid rgb(44, 44, 44);
+}
+
+
+
+@for $i from 1 through 10 {
+  .todo-card-background.weight-#{$i} {
+    opacity: #{0.4 + $i * 0.5};
+  }
+}
