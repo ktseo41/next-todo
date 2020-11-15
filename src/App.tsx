@@ -61,8 +61,6 @@ export default function App() {
   // const [doing, setDoing] = React.useState([]); // 일단 doing은 제외
   const [dones, setDones] = React.useState([]);
 
-  // console.log(v4().trim());
-
   return (
     <div className="App">
       <Router>
