@@ -2,6 +2,7 @@ import * as React from "react";
 import { v4 } from "uuid";
 import "./styles.scss";
 import defaultTodos from "./todos";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 /**
  * (기본적으로 keep 의 card 들을 상상)
@@ -64,21 +65,43 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>Next TODO</h1>
-      <h2>Manage Your Tasks Wisely</h2>
-      <div style={{ margin: "5px 0px", borderBottom: "1px solid black" }}></div>
-      <section className="container">
-        {todos
-          .sort((todoA, todoB) => {
-            if (todoA.done && todoB.done) return todoB.urgency - todoA.urgency;
-            if (todoA.done || todoB.done) return todoA.done ? 1 : -1;
+      <Router>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">home</Link>
+            </li>
+            <li>
+              <Link to="/login">login</Link>
+            </li>
+          </ul>
+        </nav>
+        <Switch>
+          <Route path="/">
+            <h1>Next TODO</h1>
+            <h2>Manage Your Tasks Wisely</h2>
+            <div
+              style={{ margin: "5px 0px", borderBottom: "1px solid black" }}
+            ></div>
+            <section className="container">
+              {todos
+                .sort((todoA, todoB) => {
+                  if (todoA.done && todoB.done)
+                    return todoB.urgency - todoA.urgency;
+                  if (todoA.done || todoB.done) return todoA.done ? 1 : -1;
 
-            return todoB.urgency - todoA.urgency;
-          })
-          .map((todo) => {
-            return <NTodoCard {...todo} />;
-          })}
-      </section>
+                  return todoB.urgency - todoA.urgency;
+                })
+                .map((todo) => {
+                  return <NTodoCard {...todo} />;
+                })}
+            </section>
+          </Route>
+          <Route path="/login">
+            <div>login</div>
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
